@@ -1,7 +1,11 @@
 package com.wyk.test.handlerdemo;
 
+import com.wyk.test.handlerdemo.bo.LoginSignBO;
+import com.wyk.test.handlerdemo.bo.PublishArticleBO;
+import com.wyk.test.handlerdemo.bo.ShareArticleBO;
 import com.wyk.test.handlerdemo.common.constant.PointEnum;
 import com.wyk.test.handlerdemo.common.init.PointHandlerInterceptor;
+import com.wyk.test.handlerdemo.service.PointHandlerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +21,15 @@ public class HandlerdemoApplicationTests {
 
     @Test
     public void contextLoads() {
-        pointHandlerInterceptor.pointAdd(PointEnum.LOGIN_SIGN.getCode());
-        pointHandlerInterceptor.pointAdd(PointEnum.PUBLISH_ARTICLE.getCode());
-        pointHandlerInterceptor.pointAdd(PointEnum.SHARE_ARTICLE.getCode());
+        PointHandlerService p1 = pointHandlerInterceptor.pointAdd(PointEnum.LOGIN_SIGN.getCode());
+        p1.addPoint(new LoginSignBO());
+        p1.notNeedImpl();
+        PointHandlerService p2 =pointHandlerInterceptor.pointAdd(PointEnum.PUBLISH_ARTICLE.getCode());
+        p2.addPoint(new PublishArticleBO());
+        p2.notNeedImpl();
+        PointHandlerService p3 =pointHandlerInterceptor.pointAdd(PointEnum.SHARE_ARTICLE.getCode());
+        p3.addPoint(new ShareArticleBO());
+        p3.notNeedImpl();
     }
 
 }

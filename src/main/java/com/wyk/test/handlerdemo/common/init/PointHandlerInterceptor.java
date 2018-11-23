@@ -13,20 +13,34 @@ import java.util.Map;
 
 /**
  * 初始化pointHandler
+ *
  * @author wyk on 2018/11/23
  */
 @Component
 public class PointHandlerInterceptor implements InitializingBean, ApplicationContextAware {
 
+    /**
+     * 内部维护的Map
+     */
     private Map<Integer, PointHandlerService> pointHandlers = new HashMap<>();
 
     private ApplicationContext applicationContext;
 
-    public Boolean pointAdd(Integer type){
-        PointHandlerService pointHandlerService = pointHandlers.get(type);
-        return pointHandlerService.addPoint();
+    /**
+     * 公共的方法
+     *
+     * @param type
+     * @return
+     */
+    public PointHandlerService pointAdd(Integer type) {
+        return pointHandlers.get(type);
     }
 
+    /**
+     * 初始化pointHandlers这个Map
+     *
+     * @throws Exception
+     */
     @Override
     public void afterPropertiesSet() throws Exception {
         Map<String, PointHandlerService> noticeHandlerBeans = applicationContext.getBeansOfType(PointHandlerService.class);

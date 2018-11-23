@@ -10,7 +10,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum PointEnum {
-
     /**
      * 编号1：发布文章，增加2分
      */
@@ -22,14 +21,12 @@ public enum PointEnum {
     /**
      * 编号3：登录签到，增加1分
      */
-    LOGIN_SIGN(3,1);
+    LOGIN_SIGN(3,1),
     ;
-
     /**
      * 编号
      */
     private Integer code;
-
     /**
      * 分值
      */
